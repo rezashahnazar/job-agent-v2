@@ -1,0 +1,30 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String      @id @default(cuid())
+  email                String      @unique @db.Char(30)
+  firstName            String?     @db.Char(20)
+  lastName             String?     @db.Char(30)
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+  isActive             Boolean     @default(false)
+  isEmailVerified      Boolean     @default(false)
+
+  @@index([email] , type: Hash)
+  @@index([createdAt] , type: BTree)
+  @@index([firstName , lastName])
+  @@index([isActive])
+  @@index([isEmailVerified])
+  @@index([isActive , isEmailVerified])
+  @@index([isActive , isEmailVerified , email])
+
+}
+
