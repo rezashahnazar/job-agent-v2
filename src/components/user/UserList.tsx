@@ -16,6 +16,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import UserCreate from "./UserCreate";
+import { ErrorResponse } from "@/types/api";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -45,11 +46,15 @@ export default function UserList() {
           duration: 3000,
         }
       );
-    } catch (error: any) {
-      toastError(error.messages?.[0] || "Failed to update user status", {
-        position: "top-right",
-        duration: 3000,
-      });
+    } catch (error: unknown) {
+      toastError(
+        (error as ErrorResponse).messages?.[0] ||
+          "Failed to update user status",
+        {
+          position: "top-right",
+          duration: 3000,
+        }
+      );
     }
   };
 
@@ -68,11 +73,14 @@ export default function UserList() {
         position: "top-right",
         duration: 3000,
       });
-    } catch (error: any) {
-      toastError(error.messages?.[0] || "Failed to delete user", {
-        position: "top-right",
-        duration: 3000,
-      });
+    } catch (error: unknown) {
+      toastError(
+        (error as ErrorResponse).messages?.[0] || "Failed to delete user",
+        {
+          position: "top-right",
+          duration: 3000,
+        }
+      );
     } finally {
       setUserToDelete(null);
     }
