@@ -124,8 +124,10 @@ export default function UserCreate() {
 
       <DialogContent className="sm:max-w-md overflow-hidden">
         <DialogHeader>
-          <DialogTitle className="text-xl">ایجاد کاربر جدید</DialogTitle>
-          <DialogDescription className="text-sm text-muted-foreground">
+          <DialogTitle className="text-xl text-start">
+            ایجاد کاربر جدید
+          </DialogTitle>
+          <DialogDescription className="text-sm text-muted-foreground text-start">
             افزودن کاربر جدید به سیستم
           </DialogDescription>
         </DialogHeader>
